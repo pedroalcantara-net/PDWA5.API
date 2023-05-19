@@ -1,5 +1,4 @@
-﻿using PDWA5.Domain.Exceptions;
-using PDWA5.Domain.Interface.Repository;
+﻿using PDWA5.Domain.Interface.Repository;
 using PDWA5.Domain.Interface.Service;
 using PDWA5.Domain.Models.DTO;
 using PDWA5.Domain.Models.Entity;
@@ -26,23 +25,19 @@ namespace PDWA5.Services
             _reviewRepository.DeleteById(id);
         }
 
-        public IEnumerable<ReviewDto> Get()
-        {
-            var reviews = _reviewRepository.Get().Select(x => new ReviewDto(x));
-            return reviews ?? throw new NotFoundException("Registros não encontrados.");
-        }
+        public IEnumerable<ReviewDto> Get() => _reviewRepository.Get().Select(x => new ReviewDto(x));
 
         public ReviewDto GetById(int id)
         {
-            var entity = _reviewRepository.GetById(id);
-            return entity == null ? throw new NotFoundException("Registro não encontrado.") : new ReviewDto(entity);
+            var review = _reviewRepository.GetById(id);
+            return new ReviewDto(review);
         }
 
-        public ReviewDto Update(ReviewDto review)
+        public ReviewDto Update(ReviewDto reviewDto)
         {
-            var entity = new Review(review);
-            entity = _reviewRepository.Update(entity);
-            return new ReviewDto(entity);
+            var review = new Review(reviewDto);
+            review = _reviewRepository.Update(review);
+            return new ReviewDto(review);
         }
     }
 }
