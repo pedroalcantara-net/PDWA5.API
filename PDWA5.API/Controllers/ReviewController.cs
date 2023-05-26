@@ -148,7 +148,7 @@ namespace PDWA5.API.Controllers
         /// <response code="204">Review excluída com sucesso.</response>
         /// <response code="404">Review solicitada não encontrada.</response>
         /// <response code="500">Erro interno do Servidor.</response>
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(void))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetailsDto))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetailsDto))]
