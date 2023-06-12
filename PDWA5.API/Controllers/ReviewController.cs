@@ -18,13 +18,13 @@ namespace PDWA5.API.Controllers
         }
 
         /// <summary>
-        /// Rota de busca de Review individual.
+        /// Individual Review GET Endpoint.
         /// </summary>
-        /// <param name="id">Id da Review solicitada.</param>
-        /// <returns>Objeto do tipo ReviewDto com as informações da Review solicitada.</returns>
-        /// <response code="200">Review solicitada.</response>
-        /// <response code="404">Review solicitada não encontrada.</response>
-        /// <response code="500">Erro interno do Servidor.</response>
+        /// <param name="id">Requested Review Id</param>
+        /// <returns>Requested Review.</returns>
+        /// <response code="200">Requested Review.</response>
+        /// <response code="404">Review not found.</response>
+        /// <response code="500">Internal Server Error.</response>
         [HttpGet("{id:int}")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ReviewDto))]
@@ -47,12 +47,12 @@ namespace PDWA5.API.Controllers
         }
 
         /// <summary>
-        /// Rota de busca de lista de Reviews.
+        /// Review list GET Endpoint.
         /// </summary>
-        /// <returns>Lista de objetos do tipo ReviewDto com todas as Reviews cadastradas no sistema.</returns>
-        /// <response code="200">Reviews solicitadas.</response>
-        /// <response code="404">Reviews solicitadas não encontradas.</response>
-        /// <response code="500">Erro interno do Servidor.</response>
+        /// <returns>ReviewDto list.</returns>
+        /// <response code="200">Requested Review.</response>
+        /// <response code="404">Reviews not found.</response>
+        /// <response code="500">Internal Server Error.</response>
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ReviewDto>))]
@@ -75,12 +75,12 @@ namespace PDWA5.API.Controllers
         }
 
         /// <summary>
-        /// Rota de Cadastro de Reviews.
+        /// Review creation POST Endpoint.
         /// </summary>
-        /// <param name="review">Objeto do tipo ReviewDto informando as informações básicas da Review.</param>
-        /// <returns>Novo objeto ReviewDto após seu registro.</returns>
-        /// <response code="201">Review cadastrada.</response>
-        /// <response code="400">Informações inconsistentes no cadastro da Review.</response>
+        /// <param name="review">ReviewDto object to be created.</param>
+        /// <returns>Created ReviewDto object.</returns>
+        /// <response code="201">Review created.</response>
+        /// <response code="400">Creating the Review wasn't possible due to incorrect information.</response>
         /// <response code="500">Erro interno do Servidor.</response>
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
@@ -105,14 +105,14 @@ namespace PDWA5.API.Controllers
         }
 
         /// <summary>
-        /// Rota de Atualização de Review.
+        /// Review update PUT Endpoint.
         /// </summary>
-        /// <param name="review">Objeto do tipo ReviewDto informando as informações da Review a ser atualizada.</param>
-        /// <returns>Novo objeto ReviewDto após sua registro.</returns>
-        /// <response code="200">Review atualizada.</response>
-        /// <response code="400">Informações inconsistentes no cadastro da Review.</response>
-        /// <response code="404">Review solicitada não encontrada.</response>
-        /// <response code="500">Erro interno do Servidor.</response>
+        /// <param name="review">ReviewDto object to be updated.</param>
+        /// <returns>Updated ReviewDto object.</returns>
+        /// <response code="200">Review updated.</response>
+        /// <response code="400">Updating the Review wasn't possible due to incorrect information.</response>
+        /// <response code="404">Review not found.</response>
+        /// <response code="500">Internal Server Error.</response>
         [HttpPut]
         [Consumes(MediaTypeNames.Application.Json)]
         [Produces(MediaTypeNames.Application.Json)]
@@ -141,13 +141,13 @@ namespace PDWA5.API.Controllers
         }
 
         /// <summary>
-        /// Método de Exclusão de Review.
+        /// Review deletion DELETE Endpoint.
         /// </summary>
-        /// <param name="id">Id da Review a ser excluída.</param>
+        /// <param name="id">Review id.</param>
         /// <returns></returns>
-        /// <response code="204">Review excluída com sucesso.</response>
-        /// <response code="404">Review solicitada não encontrada.</response>
-        /// <response code="500">Erro interno do Servidor.</response>
+        /// <response code="204">Review deleted successfully.</response>
+        /// <response code="404">Review not found.</response>
+        /// <response code="500">Internal Server Error.</response>
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(void))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetailsDto))]
