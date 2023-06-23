@@ -39,6 +39,9 @@ namespace PDWA5.Services
 
         public ReviewDto Update(ReviewDto reviewDto)
         {
+            var entity = _reviewRepository.GetById(reviewDto.Id);
+            if (entity == null) throw new NotFoundException("Review not found.");
+
             var review = new Review(reviewDto);
             review = _reviewRepository.Update(review);
             return new ReviewDto(review);
