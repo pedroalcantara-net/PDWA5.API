@@ -1,4 +1,5 @@
-﻿using PDWA5.Domain.Interface.Repository;
+﻿using PDWA5.Domain.Exceptions;
+using PDWA5.Domain.Interface.Repository;
 using PDWA5.Domain.Interface.Service;
 using PDWA5.Domain.Models.DTO;
 using PDWA5.Domain.Models.Entity;
@@ -22,6 +23,9 @@ namespace PDWA5.Services
 
         public void DeleteById(int id)
         {
+            var entity = _reviewRepository.GetById(id);
+            if (entity == null) throw new NotFoundException("Review not found.");
+
             _reviewRepository.DeleteById(id);
         }
 
